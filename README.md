@@ -1,15 +1,5 @@
-![](cover.png)
+# My soulution to problem 3 of DVDeFi
 
-**A set of challenges to learn offensive security of smart contracts in Ethereum.**
+The contract takes a function and calls $functionCall$ helper function. 
 
-Featuring flash loans, price oracles, governance, NFTs, lending pools, smart contract wallets, timelocks, and more!
-
-## Play
-
-Visit [damnvulnerabledefi.xyz](https://damnvulnerabledefi.xyz)
-
-## Disclaimer
-
-All Solidity code, practices and patterns in this repository are DAMN VULNERABLE and for educational purposes only.
-
-DO NOT USE IN PRODUCTION.
+Also, I noticed the tokens used were specially casted to interface IERC20. This lead me to reading the documentation which lead to an idea of executing the approve function to approve our deployed contract to withdraw funds.
